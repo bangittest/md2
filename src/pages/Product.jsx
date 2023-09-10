@@ -51,8 +51,12 @@ export default function Product() {
                 <div className="product__item sale">
                   <div
                     className="product__item__pic set-bg "
-                    data-setbg={e.image}
+                    data-setbg
                   >
+
+
+                  <img className="product__item__pic set-bg " style={{objectFit:"cover",borderRadius:"2px"}} src={e.image} alt="" />
+
                     <div className="label">Sale</div>
                     <ul className="product__hover">
                       <li>

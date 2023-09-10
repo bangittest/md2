@@ -1,11 +1,13 @@
 import React from "react";
-import Navbar from "../layout/Navbar";
+import Navbar from "../layout/Navbar/Navbar";
 import Footer from "../layout/Footer";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { notification } from "antd";
 import{formatMoney} from "../common/fommat"
 import { act_add } from "../actions/cartAction";
+import Instagram from "./Instagram";
+import Back_To_Top from "../components/base/backtop/Back_To_Top";
 
 
 export default function ListProduct() {
@@ -140,13 +142,14 @@ export default function ListProduct() {
                     <div key={index} className="col-lg-4 col-md-6">
                       <div className="product__item">
                         <div
-                          className="product__item__pic set-bg "
-                          data-setbg={e.image}
+                          className="product__item__pic set-bg image-container "
+                          data-setbg
                         >
+                            <img className="product__item__pic set-bg image-container" style={{objectFit:"cover",borderRadius:"2px"}} src={e.image} alt="" />
                           <div className="label new">New</div>
                           <ul className="product__hover">
                             <li>
-                              <Link to={e.image} className=" overlay_0 overlay">
+                              <Link to={e.image} className=" overlay_0 overlay image-container">
                                 <span className="arrow_expand" />
                               </Link>
                             </li>
@@ -194,7 +197,9 @@ export default function ListProduct() {
           </div>
         </section>
       </>
-
+    {/* Footer Section Begin */} 
+    <Instagram/>
+    <Back_To_Top/>
       <Footer />
     </>
   );

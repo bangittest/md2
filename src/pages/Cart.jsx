@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "../layout/Navbar";
+import Navbar from "../layout/Navbar/Navbar";
 import Footer from "../layout/Footer";
 import { Link } from "react-router-dom";
 import{formatMoney} from "../common/fommat"

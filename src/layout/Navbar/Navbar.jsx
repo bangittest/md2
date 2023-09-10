@@ -1,9 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import "../Navbar/Navbar.css"
 
 export default function Navbar() {
   const carts=useSelector((cart)=>cart.listCart)
+
+  
+  const [searchVisible, setSearchVisible] = useState(false);
+
+  const handleSearchIconClick = () => {
+    setSearchVisible(!searchVisible);
+  };
+
+  const handleCloseClick = () => {
+    setSearchVisible(false);
+    setSearchQuery('');
+  };
+
+
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      performSearch();
+    }
+  };
+
   return (
     <>
     <>
@@ -55,18 +77,17 @@ export default function Navbar() {
                 <Link to="/">Home</Link>
               </li>
               <li>
+              <Link to="/list-product">Shop</Link>
+              </li>
+              <li>
               <Link to="#">Women’s</Link>
               </li>
               <li>
               <Link to="#">Men’s</Link>
-                
               </li>
               <li>
-              <Link to="/list-product">Shop</Link>
-              </li>
-              <li>
-              <Link to="#">Page</Link>
-                <ul className="dropdown">
+              <Link to="/blog">Blog</Link>
+                {/* <ul className="dropdown">
                   <li>
                     <Link to="#">Product Details</Link> 
                   </li>
@@ -79,10 +100,10 @@ export default function Navbar() {
                   <li>
                   <Link to="#">Blog Details</Link> 
                   </li>
-                </ul>
+                </ul> */}
               </li>
               <li>
-              <Link to="/about">Blog</Link>
+              <Link to="/about">About</Link>
                
               </li>
               <li>
@@ -99,8 +120,20 @@ export default function Navbar() {
             </div>
             <ul className="header__right__widget">
               <li>
-                <span className="icon_search search-switch" />
+                <span  onClick={handleSearchIconClick}  className="icon_search search-switch" />
               </li>
+              {searchVisible && (
+        <div className="search-bar container " style={{zIndex:"888"}}>
+          <input type="text" placeholder="Search..."
+           
+            onKeyDown={handleKeyDown}
+           />
+            <button btn btn-primary>Search</button>
+            <span className="close-icon" onClick={handleCloseClick}>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM12 10.5858L9.17157 7.75736L7.75736 9.17157L10.5858 12L7.75736 14.8284L9.17157 16.2426L12 13.4142L14.8284 16.2426L16.2426 14.8284L13.4142 12L16.2426 9.17157L14.8284 7.75736L12 10.5858Z"></path></svg>
+          </span>
+        </div>
+      )}
               <li>
                 <Link to="/cart">
                   <span className="icon_bag_alt" />
